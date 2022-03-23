@@ -1,68 +1,78 @@
-#include <stdio.h>
+#import <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #define N 6
 
-void printArray(int arr[N][N])
-{
-    int i, j;
-    for (i = 0; i < N; i++) {
-    	for (j = 0; j < N; j++) {
-        	printf("%d ", arr[i][j]);
-		}
-		printf("\n");
-	}
+void fillArray(int array[N][N]) {
+    for(int i=0; i<N; i++) {
+        for(int j=0; j<N; j++) {
+            array[i][j] = rand()%10;
+        }
+    }
 }
 
-void fillArray(int *arr[N][N]) {
-	int r;
-	srand(time(NULL));
-	for(int i=0; i<N; i++) {
-		for(int j=0; j<N; j++) {
-			r = rand()%10;
-			arr[i][j] = r;	
-		}
-	}
+void printArray(int array[N][N]) {
+    for(int i=0; i<N; i++) {
+        for(int j=0; j<N; j++) {
+            printf("%d ", array[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void diagArray(int array[N][N]) {
+    for(int i=0;i<N;i++) {
+        printf("%d ", array[i][i]);
+    }
+}
+
+void rowArray(int array[N][N]) {
+    int u;
+    printf("Ktory wiersz chcesz wyswietlic? ");
+    scanf("%d", &u);
+    for(int i=0;i<N;i++) {
+        printf("%d ", array[u-1][i]);
+    }
+}
+
+void colArray(int array[N][N]) {
+    int u;
+    printf("Ktora kolumne chcesz wyswietlic? ");
+    scanf("%d", &u);
+    for(int i=0;i<N;i++) {
+        printf("%d ", array[i][u-1]);
+    }
+
 }
 
 
 void main() {
-	int tab[N][N];
-	int c, u;
-	
-	fillArray(*tab);
-	printArray(tab);
-	
-	printf("Co chcesz zrobic?\n");
-	printf("1 - Wyswietl przekatna\n");
-	printf("2 - Wyswietl wiersz\n");
-	printf("3 - Wyswietl kolumne\n");
-	
-	scanf("%d", &c);
-	
-	switch(c) {
-		case 1:
-			for(int i=0;i<N;i++) {
-				printf("%d ", tab[i][i]);
-			}
-			break;
-		case 2:
-			printf("Ktory wiersz chcesz wyswietlic? ");
-			scanf("%d", &u);
-			for(int i=0;i<N;i++) {
-				printf("%d ", tab[u-1][i]);
-			}
-			break;
-		case 3:
-			printf("Ktora kolumne chcesz wyswietlic? ");
-			scanf("%d", &u);
-			for(int i=0;i<N;i++) {
-				printf("%d ", tab[i][u-1]);
-			}
-			break;
-		default:
-			printf("ERROR");
-	}
+    int c;
+    int arr[N][N];
+    srand(time(NULL));
+
+    fillArray(arr);
+    printArray(arr);
+
+    printf("Co chcesz zrobic?\n");
+    printf("1 - Wyswietl przekatna\n");
+    printf("2 - Wyswietl wiersz\n");
+    printf("3 - Wyswietl kolumne\n");
+
+    scanf("%d", &c);
+
+    switch(c) {
+        case 1:
+            diagArray(arr);
+            break;
+        case 2:
+            rowArray(arr);
+            break;
+        case 3:
+            colArray(arr);
+            break;
+        default:
+            printf("ERROR");
+    }
 
 }
-
