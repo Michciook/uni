@@ -8,13 +8,13 @@ long long fib(int n) {
 
 void main() {
     FILE *fp;
-    fp = fopen("/Users/oskarmichta/CLionProjects/untitled/tekst.txt", "w+");
+    fp = fopen("/Users/oskarmichta/CLionProjects/untitled/tekst.csv", "w+");
 
     int n;
     printf("Ile wyrazow ciagu chcesz policzyc: ");
     scanf("%d", &n);
     for(int i=1; i<=n; i++) {
-        fprintf(fp, "%d | %lld \n", i, fib(i));
+        fprintf(fp, "%lld, ", fib(i));
     }
     fclose(fp);
 }
