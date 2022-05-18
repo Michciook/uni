@@ -18,7 +18,7 @@ void arrayCreator(int x1, int x2, int xArr[], int size) {
 squareFunction(int a, int b, int c, int arr[], int size) {
     int y;
     FILE *fp;
-    fp = fopen("/Users/oskarmichta/CLionProjects/untitled/tekst.csv", "w+");
+    fp = fopen("tekst.csv", "w+");
     for(int i=0; i<size; i++) {
         y = arr[i]*arr[i]*a+b*arr[i]+c;
         fprintf(fp, "%d\t", arr[i]);
