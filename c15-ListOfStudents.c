@@ -94,6 +94,7 @@ int main(int argc, char *argv[]) {
     dodaj(&lista, 1, "aa", "aa");
     dodaj(&lista, 2, "bb", "bb");
     dodaj(&lista, 3, "cc", "cc");
+    dodaj(&lista, 4, "dd", "dd");
     while(1) {
         printf("Co chcesz zrobic:"
                "\n1 - Dodac studenta\n"
