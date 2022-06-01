@@ -37,6 +37,20 @@ void pobierzZLewej(struct ListaStudentow** lista) {
     }
 }
 
+void wyswietlWszystko(struct ListaStudentow** lista) {
+    if(*lista == 0) {
+        printf("Lista pusta ...\n");
+    } else {
+        struct ListaStudentow* worm = *lista;
+
+        while(worm != 0) {
+            printf("Numer indexu: %d\nImie: %s\nNazwisko: %s\n", worm->wartosc, worm->imie, worm->nazwisko);
+            printf("\n");
+            worm = worm->nastepnyElement;
+        }
+    }
+}
+
 int wyszukajZListy(struct ListaStudentow** lista, int liczbaPoszukiwana) {
     if(*lista == 0) {
         printf("Lista pusta...\n");
@@ -101,6 +115,7 @@ int main(int argc, char *argv[]) {
                "2 - Wyswietlic dane ostatniego studenta\n"
                "3 - Wyszukac studenta po indeksie\n"
                "4 - Usunac studenta o danym indeksie\n"
+               "5 - Wyswietl wszystkie wpisy\n"
                "0 - zakonczyc program\n");
         scanf("%d", &c);
         switch (c) {
@@ -125,6 +140,9 @@ int main(int argc, char *argv[]) {
                 printf("Studenta o jakim indeksie chcesz usunac: ");
                 scanf("%d", &ids);
                 usun(&lista, ids);
+                break;
+            case 5:
+                wyswietlWszystko(&lista);
                 break;
             case 0:
                 return 0;
