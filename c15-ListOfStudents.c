@@ -21,11 +21,13 @@ int dlugosc(struct ListaStudentow** lista) {
 
 void zapis(struct ListaStudentow** lista) {
     FILE *plik;
-    plik = fopen("baza.bin", "wb+");
+    plik = fopen("/Users/oskarmichta/CLionProjects/untitled/baza.bin", "wb+");
     struct ListaStudentow* worm = *lista;
 
     for(int n=1; n<dlugosc(&lista); n++) {
-        fwrite(&worm, sizeof(struct ListaStudentow), 1, plik);
+        fwrite(&worm->wartosc, sizeof(int), 1, plik);
+        fwrite(&worm->imie, sizeof(char[20]), 1, plik);
+        fwrite(&worm->nazwisko, sizeof(char[20]), 1, plik);
         worm = worm->nastepnyElement;
     }
     fclose(plik);
@@ -126,10 +128,10 @@ int main(int argc, char *argv[]) {
     struct ListaStudentow * lista = 0;
     int c,id,ids;
     char im[20], nz[20];
-    dodaj(&lista, 1, "aa", "aa");
-    dodaj(&lista, 2, "bb", "bb");
-    dodaj(&lista, 3, "cc", "cc");
-    dodaj(&lista, 4, "dd", "dd");
+    dodaj(&lista, 1, "Oskar", "Michta");
+    dodaj(&lista, 2, "Robert", "Kubica");
+    dodaj(&lista, 3, "Lewis", "Hammilton");
+    dodaj(&lista, 4, "Max", "Verstapen");
     while(1) {
         printf("Co chcesz zrobic:"
                "\n1 - Dodac studenta\n"
