@@ -9,6 +9,28 @@ struct ListaStudentow {
     char nazwisko[20];
 };
 
+int dlugosc(struct ListaStudentow** lista) {
+    struct ListaStudentow* worm = *lista;
+    int ilosc = 0;
+    while(worm != 0) {
+        ilosc++;
+        worm = worm->nastepnyElement;
+    }
+    return ilosc;
+}
+
+void zapis(struct ListaStudentow** lista) {
+    FILE *plik;
+    plik = fopen("baza.bin", "wb+");
+    struct ListaStudentow* worm = *lista;
+
+    for(int n=1; n<dlugosc(&lista); n++) {
+        fwrite(&worm, sizeof(struct ListaStudentow), 1, plik);
+        worm = worm->nastepnyElement;
+    }
+    fclose(plik);
+}
+
 void dodaj(struct ListaStudentow** lista, int wartosc, char imie[], char nazwisko[]) {
     struct ListaStudentow * nowyElement =
             (struct ListaStudentow*)malloc(sizeof(struct ListaStudentow));
@@ -100,7 +122,6 @@ int usun(struct ListaStudentow ** lista, int wartosc) {
     return -1;
 }
 
-
 int main(int argc, char *argv[]) {
     struct ListaStudentow * lista = 0;
     int c,id,ids;
@@ -116,6 +137,7 @@ int main(int argc, char *argv[]) {
                "3 - Wyszukac studenta po indeksie\n"
                "4 - Usunac studenta o danym indeksie\n"
                "5 - Wyswietl wszystkie wpisy\n"
+               "6 - Zapis do pliku binarnego\n"
                "0 - zakonczyc program\n");
         scanf("%d", &c);
         switch (c) {
@@ -143,6 +165,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 5:
                 wyswietlWszystko(&lista);
+                break;
+            case 6:
+                zapis(&lista);
                 break;
             case 0:
                 return 0;
