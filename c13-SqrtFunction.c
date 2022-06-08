@@ -28,7 +28,7 @@ void squareFunction(int a, int b, int c, double arr[], int size) {
 }
 
 int main() {
-    int x1,x2,x=0;
+    int x1,x2,x=0, a, b, c;
     while(x<=0) {
         printf("Ile chcesz wyswietlic liczb: ");
         scanf("%d", &x);
@@ -41,7 +41,13 @@ int main() {
     scanf("%d", &x1);
     printf("Podaj x2: ");
     scanf("%d", &x2);
+    printf("Podaj parametr a: ");
+    scanf("%d", &a);
+    printf("Podaj parametr b: ");
+    scanf("%d", &b);
+    printf("Podaj parametr c: ");
+    scanf("%d", &c);
     arrayCreator(x1, x2, xArr, x);
-    squareFunction(-1,1,1,xArr, x);
+    squareFunction(a, b, c,xArr, x);
     return 0;
 }
